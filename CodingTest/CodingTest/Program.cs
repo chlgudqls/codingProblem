@@ -26,9 +26,19 @@ namespace CodingTest
             int[] arr = new int[] { 0, 1, 2, 4, 3 };
             int[,] queries = new int[,] { { 0, 4, 2 }, { 0, 3, 2 }, { 0, 2, 2 } };
             solutions.Solution(arr, queries);
+
+            // [i, j] 꼴입니다. 각 query 마다 순서대로 arr[i]의 값과 arr[j]의 값을 서로 바꿉니다.  --  i,j 꼴의 의미 queries1[i, 0] , queries1[i, 1]
+            // 위 규칙에 따라 queries를 처리한 이후의 arr를 리턴하는 함수
+            // 하나의 쿼리라는말은 인덱스라는 말인듯 arr의 인덱스
+
+            Solutions1 solutions1 = new Solutions1();
+            int[,] queries1 = new int[,] { { 0, 3}, { 1, 2 }, { 1, 4 } };
+            int[] arr1 = new int[] { 0, 1, 2, 3, 4 };
+            solutions1.Solution(arr1, queries1);
+
         }
 
-     
+
     }
     #region 수열과 구간 쿼리 2
     public class Solutions
@@ -65,6 +75,27 @@ namespace CodingTest
                     result[i] = -1;
             }
             return result;
+        }
+    }
+    #endregion
+    #region 수열과 구간 쿼리 3
+    public class Solutions1
+    {
+        public int[] Solution(int[] arr, int[,] queries)
+        {
+            int[] answer = new int[] { };
+
+            for (int i = 0; i < queries.GetLength(0); i++)
+            {
+                //인덱스값을 서로 교체해준다 ij꼴의 이어진 배열
+                int tempA = arr[queries[i, 0]];
+                int tempB = arr[queries[i, 1]];
+
+                arr[queries[i, 0]] = tempB;
+                arr[queries[i, 1]] = tempA;
+            }
+            
+            return arr;
         }
     }
     #endregion
