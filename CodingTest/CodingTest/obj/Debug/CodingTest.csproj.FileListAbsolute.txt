@@ -1,0 +1,9 @@
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\bin\Debug\CodingTest.exe.config
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\bin\Debug\CodingTest.exe
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\bin\Debug\CodingTest.pdb
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\obj\Debug\CodingTest.csproj.AssemblyReference.cache
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\obj\Debug\CodingTest.Properties.Resources.resources
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\obj\Debug\CodingTest.csproj.GenerateResource.cache
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\obj\Debug\CodingTest.csproj.CoreCompileInputs.cache
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\obj\Debug\CodingTest.exe
+C:\Users\THIRAUTECH\Source\Repos\codingProblem\CodingTest\CodingTest\obj\Debug\CodingTest.pdb
