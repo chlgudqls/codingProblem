@@ -281,4 +281,30 @@ namespace CodingTest
             return num % 9;
         }
     }
+
+    public class Solution9
+    {
+        public string Solution(string my_string, int[,] queries)
+        {
+            char[] charArray = my_string.ToCharArray();
+
+            for (int i = 0; i < queries.GetLength(0); i++)
+            {
+                int start = queries[i, 0];
+                int end = queries[i, 1];
+
+                while(start < end)
+                {
+                    char temp = charArray[start];
+                    charArray[start] = charArray[end];
+                    charArray[end] = temp;
+
+                    start++;
+                    end--;
+                }
+
+            }
+            return new string(charArray);
+        }
+    }
 }
