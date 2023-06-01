@@ -45,6 +45,9 @@ namespace CodingTest
             Solution5 solution5 = new Solution5();
             int[] arr5 = new int[] { 1, 4, 2, 5, 3 };
             solution5.Solution(arr5);
+
+            Solution6 solution6 = new Solution6();
+            solution6.Solution(2,2,2,2);
         }
 
 
@@ -201,6 +204,45 @@ namespace CodingTest
                     list.RemoveAt(list.Count - 1);
             }
             return list.ToArray();
+        }
+    }
+
+    public class Solution6
+    {
+        public int Solution(int a, int b, int c, int d)
+        {
+            int[] dice = { a, b, c, d };
+            Array.Sort(dice);
+
+            if (dice[0] == dice[3])
+                return dice[0] * 1111;
+
+            if (dice[0] == dice[2] || dice[1] == dice[3])
+            {
+                int p = dice[0] == dice[2] ? dice[0] : dice[3];
+                int q = dice[0] == dice[2] ? dice[3] : dice[0];
+
+                return (10 * p + q) * (10 * p + q);
+            }
+
+            if (dice[0] == dice[1] && dice[2] == dice[3])
+            {
+                int p = dice[0];
+                int q = dice[2];
+
+                return (p + q) * Math.Abs(p - q);
+            }
+
+            if (dice[0] == dice[1] && dice[2] != dice[3] || dice[0] != dice[1] && dice[2] == dice[3])
+            {
+                int p = dice[0] == dice[1] ? dice[0] : dice[2];
+                int q = dice[0] == dice[1] ? dice[2] : dice[0];
+                int r = dice[0] == dice[1] ? dice[3] : dice[1];
+
+                return q * r;
+            }
+
+            return dice[0];
         }
     }
 }
