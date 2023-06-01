@@ -48,6 +48,9 @@ namespace CodingTest
 
             Solution6 solution6 = new Solution6();
             solution6.Solution(2,2,2,2);
+
+            Solution8 solution8 = new Solution8();
+            solution8.Solution("78720646226947352489");
         }
 
 
@@ -241,8 +244,41 @@ namespace CodingTest
 
                 return q * r;
             }
-
             return dice[0];
+        }
+    }
+
+    public class Solution7
+    {
+        public int Solution(string number)
+        {
+            int q = 0;
+            int w = Convert.ToInt32(number);
+
+            while (w > 0)
+            {
+                q += w % 10;
+
+                w /= 10;
+            }
+
+
+            return q % 9;
+        }
+    }
+
+    public class Solution8
+    {
+        public int Solution(string number)
+        {
+            int num = 0;
+
+            foreach (char item in number)
+                // char는 유니코드로 정수표현하기떄문에 0을 한번빼줘야 제대로된 정수가 표현된다@@@@@@@@@@@@@@@@@@@2 새로암
+                num += item - '0';
+            //num += item;
+
+            return num % 9;
         }
     }
 }
