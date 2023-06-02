@@ -51,6 +51,7 @@ namespace CodingTest
 
             Solution8 solution8 = new Solution8();
             solution8.Solution("78720646226947352489");
+
         }
 
 
@@ -287,7 +288,7 @@ namespace CodingTest
         public string Solution(string my_string, int[,] queries)
         {
             char[] charArray = my_string.ToCharArray();
-
+            
             for (int i = 0; i < queries.GetLength(0); i++)
             {
                 int start = queries[i, 0];
@@ -305,6 +306,61 @@ namespace CodingTest
 
             }
             return new string(charArray);
+        }
+    }
+
+    public class Solution10
+    {
+        public int[] Solution(string[] intStrs, int k, int s, int l)
+        {
+            {
+                // 문자열 배열의 각 원소마다 s번 인덱스에서 시작하는 길이l 짜리 부분 문자열을 정수로 변환 
+                // 이때 변환한 정수값이 k보다 큰값들을 담은 배열을 return
+                List<int> list = new List<int>();
+
+                for (int i = 0; i < intStrs.Length; i++)
+                {
+                    string q = intStrs[i].Substring(s, l);
+
+                    int a = Convert.ToInt32(q);
+
+                    if (a > k)
+                        list.Add(a);
+                }
+
+                return list.ToArray();
+            }
+        }
+
+        public class Solution11
+        {
+            public string Solution(string[] my_strings, int[,] parts)
+            {
+                string answer = "";
+                // 길이가 같은 문자열 배열과 이차원 정수 배열이 매개변수로 주어짐
+                // 2차원배열은 [s,e] 형태로 문자열 배열의 s부터 e 까지의 부분 문자열을 의미
+                // 각 문자열 배열의 원소의 parts에 해당하는 부분 문자열을 순서대로 이어 붙인 문자열 리턴
+
+                for (int i = 0; i < parts.GetLength(0); i++)
+                {
+                    int s = parts[i, 0];
+                    int e = parts[i, 1];
+
+                    int l = e - s + 1;
+
+                    answer += my_strings[i].Substring(s, l);
+                }
+
+                return answer;
+            }
+        }
+
+        public class Solution12
+        {
+            public string Solution(string my_string, int n)
+            {
+                
+            }
         }
     }
 }
