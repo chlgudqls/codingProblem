@@ -359,7 +359,25 @@ namespace CodingTest
         {
             public string Solution(string my_string, int n)
             {
-                
+                string answer = "";
+                // 문자열 뒤의 n글자로 이루어진 문자열리턴
+                int a = my_string.Length - n;
+                return answer = my_string.Substring(a, n);
+            }
+        }
+
+        public class Solution13
+        {
+            public string[] Solution(string my_string)
+            {
+                List<string> list = new List<string>();
+                // 모든 접미사를 사전순으로 정렬
+                for (int i = 0; i < my_string.Length; i++)
+                    list.Add(my_string.Substring(i, my_string.Length - i));
+
+                list.Sort();
+
+                return list.ToArray();
             }
         }
     }
