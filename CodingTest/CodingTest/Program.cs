@@ -467,7 +467,45 @@ namespace CodingTest
     {
         public int[] solution(int n, int[] slicer, int[] num_list)
         {
-            // 
+            //slicer에 담긴 정수를 차례대로 a, b, c라고 할 때
+
+            // n = 1 : num_list의 0번 인덱스부터 b번 인덱스까지
+            // n = 2 : num_list의 a번 인덱스부터 마지막 인덱스까지
+            // n = 3 : num_list의 a번 인덱스부터 b번 인덱스까지
+            // n = 4 : num_list의 a번 인덱스부터 b번 인덱스까지 c 간격으로
+
+            int a = slicer[0];
+            int b = slicer[1];
+            int c = slicer[2];
+
+            if(n == 1)
+            {
+                int[] arr = new int[b + 1];
+                Array.Copy(num_list, 0, arr, 0, b + 1);
+                return arr;
+            }
+            else if (n == 2)
+            {
+                int[] arr = new int[num_list.Length - a];
+                Array.Copy(num_list, a, arr, 0, num_list.Length - a);
+                return arr;
+            }
+            else if (n == 3)
+            {
+                int[] arr = new int[b - a + 1];
+                Array.Copy(num_list, a, arr, 0, b - a + 1);
+                return arr;
+            }
+            else if (n == 4)
+            {
+                List<int> list = new List<int>();
+                for (int i = a; i <= b; i+= c)
+                    list.Add(num_list[i]);
+
+                return list.ToArray();
+            }
+
+            return new int[0];
         }
     }
 }
