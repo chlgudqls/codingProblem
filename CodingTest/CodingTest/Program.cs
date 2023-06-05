@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,7 +33,7 @@ namespace CodingTest
             // 하나의 쿼리라는말은 인덱스라는 말인듯 arr의 인덱스
 
             Solution2 solutions1 = new Solution2();
-            int[,] queries1 = new int[,] { { 0, 3}, { 1, 2 }, { 1, 4 } };
+            int[,] queries1 = new int[,] { { 0, 3 }, { 1, 2 }, { 1, 4 } };
             int[] arr1 = new int[] { 0, 1, 2, 3, 4 };
             solutions1.Solution(arr1, queries1);
 
@@ -47,11 +48,22 @@ namespace CodingTest
             solution5.Solution(arr5);
 
             Solution6 solution6 = new Solution6();
-            solution6.Solution(2,2,2,2);
+            solution6.Solution(2, 2, 2, 2);
 
             Solution8 solution8 = new Solution8();
             solution8.Solution("78720646226947352489");
 
+            Solution14 solution14 = new Solution14();
+            solution14.Solution("ihrhbakrfpndopljhygc", 4, 2);
+
+            Solution15 solution15 = new Solution15();
+            solution15.solution("ihrhbakrfpndopljhygc", 4, 2);
+
+
+            Solution16 solution16 = new Solution16();
+            solution16.solution("Programmers");
+
+            
         }
 
 
@@ -74,11 +86,11 @@ namespace CodingTest
                 // 찾았을경우에만 적용하기위해서
                 int min = Int32.MaxValue;
                 bool found = false;
-                
+
                 // j가 스타트하는 지점과 끝나는지점
                 for (int j = start; j <= end; j++)
                 {
-                    if(arr[j] > k && arr[j] < min)
+                    if (arr[j] > k && arr[j] < min)
                     {
                         min = arr[j];
                         found = true;
@@ -110,7 +122,7 @@ namespace CodingTest
                 arr[queries[i, 0]] = tempB;
                 arr[queries[i, 1]] = tempA;
             }
-            
+
             return arr;
         }
     }
@@ -288,13 +300,13 @@ namespace CodingTest
         public string Solution(string my_string, int[,] queries)
         {
             char[] charArray = my_string.ToCharArray();
-            
+
             for (int i = 0; i < queries.GetLength(0); i++)
             {
                 int start = queries[i, 0];
                 int end = queries[i, 1];
 
-                while(start < end)
+                while (start < end)
                 {
                     char temp = charArray[start];
                     charArray[start] = charArray[end];
@@ -332,53 +344,130 @@ namespace CodingTest
             }
         }
 
-        public class Solution11
+    }
+    public class Solution11
+    {
+        public string Solution(string[] my_strings, int[,] parts)
         {
-            public string Solution(string[] my_strings, int[,] parts)
+            string answer = "";
+            // 길이가 같은 문자열 배열과 이차원 정수 배열이 매개변수로 주어짐
+            // 2차원배열은 [s,e] 형태로 문자열 배열의 s부터 e 까지의 부분 문자열을 의미
+            // 각 문자열 배열의 원소의 parts에 해당하는 부분 문자열을 순서대로 이어 붙인 문자열 리턴
+
+            for (int i = 0; i < parts.GetLength(0); i++)
             {
-                string answer = "";
-                // 길이가 같은 문자열 배열과 이차원 정수 배열이 매개변수로 주어짐
-                // 2차원배열은 [s,e] 형태로 문자열 배열의 s부터 e 까지의 부분 문자열을 의미
-                // 각 문자열 배열의 원소의 parts에 해당하는 부분 문자열을 순서대로 이어 붙인 문자열 리턴
+                int s = parts[i, 0];
+                int e = parts[i, 1];
 
-                for (int i = 0; i < parts.GetLength(0); i++)
-                {
-                    int s = parts[i, 0];
-                    int e = parts[i, 1];
+                int l = e - s + 1;
 
-                    int l = e - s + 1;
-
-                    answer += my_strings[i].Substring(s, l);
-                }
-
-                return answer;
+                answer += my_strings[i].Substring(s, l);
             }
+
+            return answer;
+        }
+    }
+
+    public class Solution12
+    {
+        public string Solution(string my_string, int n)
+        {
+            string answer = "";
+            // 문자열 뒤의 n글자로 이루어진 문자열리턴
+            int a = my_string.Length - n;
+            return answer = my_string.Substring(a, n);
+        }
+    }
+
+    public class Solution13
+    {
+        public string[] Solution(string my_string)
+        {
+            List<string> list = new List<string>();
+            // 모든 접미사를 사전순으로 정렬
+            for (int i = 0; i < my_string.Length; i++)
+                list.Add(my_string.Substring(i, my_string.Length - i));
+
+            list.Sort();
+
+            return list.ToArray();
+        }
+    }
+
+    public class Solution14
+    {
+        public string Solution(string my_string, int m, int c)
+        {
+            string answer = "";
+
+            for (int i = 0; i < my_string.Length; i += m)
+            {
+                int length = Math.Min(m, my_string.Length - i);
+                string a = my_string.Substring(i, length);
+
+                answer += a[c].ToString();
+
+
+
+            }
+
+            return answer;
         }
 
-        public class Solution12
+    }
+    public class Solution15
+    {
+        public string solution(string my_string, int m, int c)
         {
-            public string Solution(string my_string, int n)
+            string asnwer = "";
+
+            //한줄에 m글자씩 가로로 적었을때 
+            for (int i = 0; i < my_string.Length; i+= m)
             {
-                string answer = "";
-                // 문자열 뒤의 n글자로 이루어진 문자열리턴
-                int a = my_string.Length - n;
-                return answer = my_string.Substring(a, n);
+                int length = Math.Min(m, my_string.Length - i);
+                string a = my_string.Substring(i, length);
+
+                //왼쪽부터 세로로 c번쨰 열에적힌글자들
+                asnwer += a[c - 1].ToString();
             }
+            return asnwer;
         }
+    }
 
-        public class Solution13
+    public class Solution16
+    {
+        public int[] solution(string my_string)
         {
-            public string[] Solution(string my_string)
+            //대소문자로 이루어진 문자열 개수를 담은  길이 52의 정수배열을 리턴하는 함수
+
+            int[] arr = new int[52];
+
+            foreach(char c in my_string)
             {
-                List<string> list = new List<string>();
-                // 모든 접미사를 사전순으로 정렬
-                for (int i = 0; i < my_string.Length; i++)
-                    list.Add(my_string.Substring(i, my_string.Length - i));
+                if (c >= 'A' && c <= 'Z')
+                    arr[c - 'A']++;
 
-                list.Sort();
-
-                return list.ToArray();
+                else if (c >= 'a' && c <= 'z')
+                    arr[c - 'a' + 26]++;
             }
+            return arr;
+        }
+    }
+
+    public class Solution17
+    {
+        public string solution(string my_string, int[] indices)
+        {
+            // 문자열에서 indices의 원소에 해당하는 인덱스의 글자를 지우고 이어 붙인 문자열 리턴
+            return new string(my_string.Where((w, index) => !indices.Contains(index)).ToArray());
+        }
+    }
+
+    public class Solution18
+    {
+        public int[] solution(int n, int[] slicer, int[] num_list)
+        {
+            // 
         }
     }
 }
