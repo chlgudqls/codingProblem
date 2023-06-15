@@ -63,7 +63,12 @@ namespace CodingTest
             Solution16 solution16 = new Solution16();
             solution16.solution("Programmers");
 
-            
+
+            int[] arr21 = new int[] { 0, 1, 2, 3, 4, 5 };
+            int[] query21 = new int[] { 4, 1, 2 };
+
+            Solution21 solution21 = new Solution21();
+            solution21.solution(arr21,query21);
         }
 
 
@@ -506,6 +511,83 @@ namespace CodingTest
             }
 
             return new int[0];
+        }
+    }
+
+    public class Solution19
+    {
+        public int[] solution(int[] arr, int[,] intervals)
+        {
+            // 이 꼴이 배열의 시퀀스라는걸 생각
+            // [][] 일때
+            //int a1 = intervals[0][0]; // 첫 번째 구간의 시작 인덱스
+            //int b1 = intervals[0][1]; // 첫 번째 구간의 끝 인덱스
+            //int a2 = intervals[1][0]; // 두 번째 구간의 시작 인덱스
+            //int b2 = intervals[1][1]; // 두 번째 구간의 끝 인덱스
+            int a1 = intervals[0, 0]; // 첫 번째 구간의 시작 인덱스
+            int b1 = intervals[0, 1]; // 첫 번째 구간의 끝 인덱스
+            int a2 = intervals[1, 0]; // 두 번째 구간의 시작 인덱스
+            int b2 = intervals[1, 1]; // 두 번째 구간의 끝 인덱스
+
+            // Skip =  처음 a1까지의 요소들을 건너뜀   
+            // Take = 시작부분부터 지정된 수의 연속 요소를 반환
+            int[] firstRange = arr.Skip(a1).Take(b1 - a1 + 1).ToArray(); // 첫 번째 구간에 해당하는 배열 슬라이싱
+            int[] secondRange = arr.Skip(a2).Take(b2 - a2 + 1).ToArray(); // 두 번째 구간에 해당하는 배열 슬라이싱
+
+            int[] mergedArray = firstRange.Concat(secondRange).ToArray(); // 두 배열을 앞뒤로 붙이기
+
+            return mergedArray;
+        }
+    }
+
+    public class Solution20
+    {
+        public int[] solution(int[] arr)
+        {
+            int startIndex = -1;
+            int endIndex = -1;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if(arr[i] == 2)
+                {
+                    if (startIndex == -1)
+                        startIndex = i;
+
+                    endIndex = i;
+                }
+            }
+
+            if (startIndex == -1)
+                return new int[] { -1 };
+
+            int[] result = new int[endIndex - startIndex + 1];
+            Array.Copy(arr, startIndex, result, 0, result.Length);
+
+            return result;
+        }
+    }
+
+    public class Solution21
+    {
+        public int[] solution(int[] arr, int[] query)
+        {
+            List<int> result = new List<int>(arr);
+
+            for (int i = 0; i < query.Length; i++)
+            {
+                if (i % 2 == 0) // 짝수
+                {
+                    // 시작인덱스부터 개수니까 맞네 인덱스부터 인덱스 인줄
+                    result.RemoveRange(query[i] + 1, result.Count - 1 - query[i]);
+                }
+                else // 홀수
+                {
+                    // 1이면 0부터 1개니까 0번째인덱스만 잘려나감 
+                    result.RemoveRange(0, query[i]);
+                }
+            }
+            return result.ToArray();
         }
     }
 }
